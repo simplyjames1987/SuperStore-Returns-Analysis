@@ -13,7 +13,7 @@ This project analyzes return patterns in Superstore data to uncover trends and r
 - Root cause investigation for high return rates
 - Actionable insights and visual storytelling
 
-## 🔗 View the Live Dashboard
+## 🔗 View the Live Story
 [Superstore Returns Analysis on Tableau Public](https://public.tableau.com/app/profile/james.wesson/viz/SuperstoreReturnsAnalysis_17474298900460/Presentation)
 
 ## 🧠 Insights
