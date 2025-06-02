@@ -1,0 +1,28 @@
+-- Join orders with returns to identify returned items
+SELECT
+    o.Region,
+    o.Segment,
+    o.Category,
+    o.SubCategory,
+    COUNT(DISTINCT o.OrderID) AS Total_Orders,
+    COUNT(DISTINCT r.OrderID) AS Returned_Orders,
+    ROUND(
+        COUNT(DISTINCT r.OrderID) * 100.0 / NULLIF(COUNT(DISTINCT o.OrderID), 0),
+        2
+    ) AS Return_Rate_Percent,
+    SUM(o.Sales) AS Total_Sales,
+    SUM(o.Profit) AS Total_Profit
+FROM
+    orders o
+LEFT JOIN
+    returns r
+    ON o.OrderID = r.OrderID
+WHERE
+    o.OrderDate BETWEEN '2019-01-01' AND '2021-12-31'
+GROUP BY
+    o.Region,
+    o.Segment,
+    o.Category,
+    o.SubCategory
+ORDER BY
+    Return_Rate_Percent DESC;
