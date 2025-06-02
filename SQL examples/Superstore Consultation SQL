@@ -1,0 +1,21 @@
+SELECT
+    Region,
+    Segment,
+    Category,
+    SubCategory,
+    SUM(Sales) AS Total_Sales,
+    SUM(Profit) AS Total_Profit,
+    SUM(Quantity) AS Total_Quantity,
+    ROUND(SUM(Profit) / NULLIF(SUM(Sales), 0), 4) AS Profit_Margin,
+    COUNT(DISTINCT OrderID) AS Total_Orders
+FROM
+    superstore_orders
+WHERE
+    OrderDate BETWEEN '2019-01-01' AND '2021-12-31'
+GROUP BY
+    Region,
+    Segment,
+    Category,
+    SubCategory
+ORDER BY
+    Total_Profit ASC;
